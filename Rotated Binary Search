@@ -1,0 +1,43 @@
+public class Divide_and_Conquer {
+    public static int RotatedBinarySearch(int arr[], int si , int ei , int key){
+        //base case
+        if(si>ei){
+            return -1;
+        }
+        // find mid
+        int mid = si+(ei-si)/2;
+        if(arr[mid]==key){
+            return mid;
+        }
+        // line 1 
+        
+        if(arr[si]<arr[mid]){
+            //case 1
+            if(arr[si]<=key && key < arr[mid] ){ // left
+                return serach(arr, si, mid-1, key);
+
+            }
+            //case 2
+            else{                               //right 
+                return serach(arr, mid+1, ei, key);
+
+            }
+        }
+        //line 2
+        else{
+            //case 1
+            if(arr[mid]<key && key <= arr[ei]){  // right
+                return serach(arr, mid+1, ei, key);
+            }
+            //case 2
+            else{                               // left
+               return serach(arr, si, mid-1, key);
+            }
+        }    
+    }
+    public static void main(String[] args) {
+        int arr[] = {3,4,5,6,0,1,2};
+        System.out.println(RotatedBinarySearch(arr, 0, arr.length-1, 5));
+    }
+}
+
